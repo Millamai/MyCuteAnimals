@@ -1,0 +1,58 @@
+﻿@page
+@using MyCuteAnimals.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+             <h1>The cutiest animals</h1>
+            </div>
+
+
+
+            @foreach (Animal item in Model.MyAnimals)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card my-3">
+
+                        <img src="images/@item.Image" class="card-image-top" alt="thumbnail">
+
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="#" class="text-secondary">@item.Name</a></h3>
+                            <p class="card-text">@item.Description</p>
+
+                          
+                            <a asp-page-handler="Delete"
+                               asp-route-id="@item.Id">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span></a>
+                        </div>
+                    </div>
+                </div>
+            }
+           
+            
+
+        </div>
+    </div>
+</section>
+@section Scripts
+{
+  
+    <script>
+        /*$(".btn-primary").click(function () {
+            alert("test");
+            $.post('@Url.Action("Delete", "Index")', function (data) {
+                // handle the response
+            });
+        });*/
+
+       
+    </script>
+}
+}
