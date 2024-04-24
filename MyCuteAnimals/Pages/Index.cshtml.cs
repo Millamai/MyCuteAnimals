@@ -9,10 +9,12 @@ namespace MyCuteAnimals.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         public List<Animal> MyAnimals { get; set; }
-        public IndexModel(ILogger<IndexModel> logger)
+        private readonly IAnimalRepository _repo;
+       
+        public IndexModel(IAnimalRepository repo)
         {
-            _logger = logger;
-            MyAnimals = new AnimalRepository().Animals;
+            _repo = repo;
+            MyAnimals = repo.GetAll();
         }
 
         public void OnGet()
@@ -20,10 +22,10 @@ namespace MyCuteAnimals.Pages
 
         }
 
-    //Handler til at håndtere sletning
+        //Handler til at håndtere sletning
         public IActionResult OnGetDelete(int id)
         {
-            new AnimalRepository().Delete(id);
+            _repo.Delete(id);
             return Redirect("Index");
         }
     }

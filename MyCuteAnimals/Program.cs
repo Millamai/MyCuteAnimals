@@ -1,3 +1,5 @@
+using MyCuteAnimals.Models;
+
 namespace MyCuteAnimals
 {
     public class Program
@@ -8,7 +10,7 @@ namespace MyCuteAnimals
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-
+            builder.Services.AddSingleton<IAnimalRepository,UglyAnimalRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
